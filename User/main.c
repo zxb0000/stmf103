@@ -1,11 +1,5 @@
 
 #include "stm32f1xx_hal.h"
-
-void SystemClock_Config(void);
-void led_init(void);
-void key_init(void);
-void exti_init(void);
-int key_status(void);
 #define LED0 GPIOB
 #define LED1 GPIOE
 #define LED_PIN GPIO_PIN_5
@@ -19,6 +13,18 @@ int key_status(void);
 #define KEY0 GPIOE
 #define KEY1_PIN GPIO_PIN_3
 #define KEY0_PIN GPIO_PIN_4
+#define BUFFSIZE 16
+#define RX_PIN GPIO_PIN_10
+#define TX_PIN GPIO_PIN_9
+#define RX_PORT GPIOA
+#define TX_PORT GPIOA
+void SystemClock_Config(void);
+void led_init(void);
+void key_init(void);
+void exti_init(void);
+int key_status(void);
+void uart_init(void);
+static uint8_t uart_buf[BUFFSIZE];
 int main(void)
 {
 
@@ -126,22 +132,69 @@ int key_status()
 	pressed=0;
 	return 3;
 }
+void uart_init(void)
+{
+  UART_HandleTypeDef uart_handle;
+  UART_InitTypeDef uart_init;
+  uart_init.BaudRate = 115200;
+  uart_init.WordLength=UART_WORDLENGTH_8B;
+  uart_init.StopBits=UART_STOPBITS_1;
+  uart_init.Parity=UART_PARITY_NONE;
+  uart_init.HwFlowCtl=UART_HWCONTROL_NONE;
+  uart_init.Mode=UART_MODE_TX_RX;
+  uart_init.OverSampling=UART_OVERSAMPLING_16;
+  uart_handle.Instance = USART1;
+  uart_handle.Init = uart_init;
+  HAL_UART_Init(&uart_handle);
+  HAL_UART_Receive_IT(&uart_handle,uart_buf,BUFFSIZE);
+  
+}
+void HAL_UART_MspInit(UART_HandleTypeDef *huart)
+{
+	if(huart->Instance ==USART1){
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+	__HAL_RCC_USART1_CLK_ENABLE();
+  //设置接收RX引脚
+  GPIO_InitTypeDef uart_gpio;
+  uart_gpio.Mode=GPIO_MODE_AF_INPUT;
+  uart_gpio.Pin=RX_PIN;
+  uart_gpio.Pull=GPIO_NOPULL;
+  uart_gpio.Speed=GPIO_SPEED_FREQ_HIGH;
+  HAL_GPIO_Init(RX_PORT,&uart_gpio);
+
+  //设置发送TX引脚
+  uart_gpio.Mode=GPIO_MODE_AF_PP;
+  uart_gpio.Pin=TX_PIN;
+  uart_gpio.Speed=GPIO_SPEED_FREQ_HIGH;
+  HAL_GPIO_Init(TX_PORT,&uart_gpio);
+
+  //使能中断
+  HAL_NVIC_EnableIRQ(USART1_IRQn);
+  HAL_NVIC_SetPriority(USART1_IRQn,2,0);
+	}
+}
+void USART1_IRQHandler(void)
+{
+
+}
+
+
 /**
-  * @brief  System Clock Configuration
-  *         The system Clock is configured as follow : 
-  *            System Clock source            = PLL (HSE)
-  *            SYSCLK(Hz)                     = 72000000
-  *            HCLK(Hz)                       = 72000000
-  *            AHB Prescaler                  = 1
-  *            APB1 Prescaler                 = 2
-  *            APB2 Prescaler                 = 1
-  *            HSE Frequency(Hz)              = 8000000
-  *            HSE PREDIV1                    = 1
-  *            PLLMUL                         = 9
-  *            Flash Latency(WS)              = 2
-  * @param  None
-  * @retval None
-  */
+ * @brief  System Clock Configuration
+ *         The system Clock is configured as follow :
+ *            System Clock source            = PLL (HSE)
+ *            SYSCLK(Hz)                     = 72000000
+ *            HCLK(Hz)                       = 72000000
+ *            AHB Prescaler                  = 1
+ *            APB1 Prescaler                 = 2
+ *            APB2 Prescaler                 = 1
+ *            HSE Frequency(Hz)              = 8000000
+ *            HSE PREDIV1                    = 1
+ *            PLLMUL                         = 9
+ *            Flash Latency(WS)              = 2
+ * @param  None
+ * @retval None
+ */
 void SystemClock_Config(void)
 {
   RCC_ClkInitTypeDef clkinitstruct = {0};
