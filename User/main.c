@@ -1,5 +1,6 @@
-
+#pragma import(__use_no_semihosting) //½ûÓÃ°ëÖ÷»úÄ£Ê½     
 #include "stm32f1xx_hal.h"
+#include "stdio.h"
 #define LED0 GPIOB
 #define LED1 GPIOE
 #define LED_PIN GPIO_PIN_5
@@ -13,18 +14,37 @@
 #define KEY0 GPIOE
 #define KEY1_PIN GPIO_PIN_3
 #define KEY0_PIN GPIO_PIN_4
-#define BUFFSIZE 16
+#define BUFFSIZE 1
 #define RX_PIN GPIO_PIN_10
 #define TX_PIN GPIO_PIN_9
 #define RX_PORT GPIOA
 #define TX_PORT GPIOA
+#define MAX_REC_LEN 128 //Ò»´Î×î´ó½ÓÊÕµÄÊý¾Ý³¤¶È
+
+//±ê×¼¿âÐèÒªµÄÖ§³Öº¯Êý                 
+struct __FILE 
+{ 
+	int handle; 
+ 
+}; 
+ 
+FILE __stdout;       
+//¶¨Òå_sys_exit()ÒÔ±ÜÃâÊ¹ÓÃ°ëÖ÷»úÄ£Ê½    
+void _sys_exit(int x) 
+{ 
+	x = x; 
+} 
 void SystemClock_Config(void);
 void led_init(void);
 void key_init(void);
 void exti_init(void);
 int key_status(void);
 void uart_init(void);
-static uint8_t uart_buf[BUFFSIZE];
+UART_HandleTypeDef uart_handle;
+uint8_t uart_rx_buf[BUFFSIZE];
+uint8_t g_rx_buf[MAX_REC_LEN];
+uint16_t flag;
+
 int main(void)
 {
 
@@ -32,9 +52,20 @@ int main(void)
   SystemClock_Config();
 	led_init();
 	exti_init();
+  uart_init();
   while (1)
   {
-		HAL_Delay(100);
+
+    if (flag>>15)
+    {
+      
+      HAL_UART_Transmit(&uart_handle, g_rx_buf, flag&(0x3FFF), 1000);
+      flag=0;
+      while(__HAL_UART_GET_FLAG(&uart_handle, UART_FLAG_TC)==RESET);
+      printf("\r\n");
+    }
+    HAL_Delay(10);
+    
   }
 }
 void led_init(){
@@ -134,7 +165,7 @@ int key_status()
 }
 void uart_init(void)
 {
-  UART_HandleTypeDef uart_handle;
+  
   UART_InitTypeDef uart_init;
   uart_init.BaudRate = 115200;
   uart_init.WordLength=UART_WORDLENGTH_8B;
@@ -146,7 +177,7 @@ void uart_init(void)
   uart_handle.Instance = USART1;
   uart_handle.Init = uart_init;
   HAL_UART_Init(&uart_handle);
-  HAL_UART_Receive_IT(&uart_handle,uart_buf,BUFFSIZE);
+  HAL_UART_Receive_IT(&uart_handle,uart_rx_buf,BUFFSIZE);
   
 }
 void HAL_UART_MspInit(UART_HandleTypeDef *huart)
@@ -154,7 +185,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef *huart)
 	if(huart->Instance ==USART1){
 	__HAL_RCC_GPIOA_CLK_ENABLE();
 	__HAL_RCC_USART1_CLK_ENABLE();
-  //è®¾ç½®æŽ¥æ”¶RXå¼•è„š
+  //ÉèÖÃ½ÓÊÕRXÒý½Å
   GPIO_InitTypeDef uart_gpio;
   uart_gpio.Mode=GPIO_MODE_AF_INPUT;
   uart_gpio.Pin=RX_PIN;
@@ -162,20 +193,51 @@ void HAL_UART_MspInit(UART_HandleTypeDef *huart)
   uart_gpio.Speed=GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(RX_PORT,&uart_gpio);
 
-  //è®¾ç½®å‘é€TXå¼•è„š
+  //ÉèÖÃ·¢ËÍTXÒý½Å
   uart_gpio.Mode=GPIO_MODE_AF_PP;
   uart_gpio.Pin=TX_PIN;
   uart_gpio.Speed=GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(TX_PORT,&uart_gpio);
 
-  //ä½¿èƒ½ä¸­æ–­
+  //Ê¹ÄÜÖÐ¶Ï
   HAL_NVIC_EnableIRQ(USART1_IRQn);
   HAL_NVIC_SetPriority(USART1_IRQn,2,0);
 	}
 }
-void USART1_IRQHandler(void)
-{
+void USART1_IRQHandler(){
 
+  //µ÷ÓÃ¹«¹²µÄÖÐ¶Ïº¯Êý
+  HAL_UART_IRQHandler(&uart_handle);
+
+}
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+  if(huart->Instance==USART1){
+   
+    if (flag&0x4000)
+    {
+      if(uart_rx_buf[0]=='\n'){
+      flag|=(1<<15);
+      }else{
+        flag=0;
+      }
+    }else{
+      if (uart_rx_buf[0]=='\r')
+      {
+        flag|=(1<<14);
+      }else{
+        g_rx_buf[flag&(0x3FFF)]=uart_rx_buf[0];
+        flag++;
+        if(flag>(MAX_REC_LEN-1)){
+          flag=0;
+        }
+      }
+    }
+    
+    //ÖØÐÂ¿ªÆôÖÐ¶Ï
+    HAL_UART_Receive_IT(&uart_handle,uart_rx_buf,BUFFSIZE);
+
+  }
 }
 
 
@@ -225,7 +287,18 @@ void SystemClock_Config(void)
     /* Initialization Error */
     while(1);
   }
-	//è®¾ç½®æ»´ç­”å®šæ—¶å™¨çš„ä¸­æ–­ä¼˜å…ˆçº§ åªè¦æ¯”æŒ‰é”®ä¸­æ–­çš„ä¼˜å…ˆçº§é«˜å°±å¯ä»¥äº†
+	//ÉèÖÃµÎ´ð¶¨Ê±Æ÷µÄÖÐ¶ÏÓÅÏÈ¼¶ Ö»Òª±È°´¼üÖÐ¶ÏµÄÓÅÏÈ¼¶¸ß¾Í¿ÉÒÔÁË
 	HAL_NVIC_SetPriority(SysTick_IRQn,0,0);
 }
 
+//ÖØ¶¨Òåfputcº¯Êý 
+int fputc(int ch, FILE *f)
+{      
+  //¶þÑ¡Ò»,¹¦ÄÜÒ»Ñù
+  HAL_UART_Transmit (&uart_handle ,(uint8_t *)&ch,1,HAL_MAX_DELAY );
+	return ch;
+    
+//	while((USART1->SR&0X40)==0);//Ñ­»··¢ËÍ,Ö±µ½·¢ËÍÍê±Ï   
+//    USART1->DR = (uint8_t) ch;      
+//	return ch;
+}
