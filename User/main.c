@@ -1,6 +1,7 @@
 #pragma import(__use_no_semihosting) //禁用半主机模式     
 #include "stm32f1xx_hal.h"
 #include "stdio.h"
+#include "iwdg.h"
 #define LED0 GPIOB
 #define LED1 GPIOE
 #define LED_PIN GPIO_PIN_5
@@ -12,6 +13,8 @@
 #define LED0_TOGGLE do{HAL_GPIO_TogglePin(LED0, LED_PIN);}while (0)
 #define KEY1 GPIOE
 #define KEY0 GPIOE
+#define KEY_UP GPIOA
+#define KEY_UP_PIN GPIO_PIN_0
 #define KEY1_PIN GPIO_PIN_3
 #define KEY0_PIN GPIO_PIN_4
 #define BUFFSIZE 1
@@ -53,9 +56,11 @@ int main(void)
 	led_init();
 	exti_init();
   uart_init();
+  iwdg_init(8000,3);
+  printf("重启！\r\n");
+  iwdg_start();
   while (1)
   {
-
     if (flag>>15)
     {
       
@@ -84,6 +89,7 @@ void led_init(){
 void key_init()
 {
 	__HAL_RCC_GPIOE_CLK_ENABLE(); 
+  __HAL_RCC_GPIOA_CLK_ENABLE();
 	GPIO_InitTypeDef gpio_init={0};
   gpio_init.Mode=GPIO_MODE_INPUT;
 	gpio_init.Pin=KEY0_PIN;
@@ -97,6 +103,7 @@ void key_init()
 void exti_init(void)
 {
   __HAL_RCC_GPIOE_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
   GPIO_InitTypeDef init_def = {0};
   init_def.Pin=KEY0_PIN;
   init_def.Mode=GPIO_MODE_IT_FALLING;
@@ -105,10 +112,19 @@ void exti_init(void)
   HAL_GPIO_Init(KEY0, &init_def);
   init_def.Pin=KEY1_PIN;
   HAL_GPIO_Init(KEY1, &init_def);
+
+  init_def.Pin=KEY_UP_PIN;
+  init_def.Mode=GPIO_MODE_IT_RISING;
+  init_def.Pull=GPIO_PULLDOWN;
+  HAL_GPIO_Init(KEY_UP, &init_def);
+
   HAL_NVIC_EnableIRQ(EXTI3_IRQn);
   HAL_NVIC_EnableIRQ(EXTI4_IRQn);
+  HAL_NVIC_EnableIRQ(EXTI0_IRQn);
+
   HAL_NVIC_SetPriority(EXTI3_IRQn,2,1);
   HAL_NVIC_SetPriority(EXTI4_IRQn,2,2);
+  HAL_NVIC_SetPriority(EXTI0_IRQn,1,0);
   
 }
 void EXTI3_IRQHandler()
@@ -132,6 +148,17 @@ void EXTI4_IRQHandler()
   LED0_TOGGLE;
   __HAL_GPIO_EXTI_CLEAR_IT(KEY0_PIN);
   
+}
+void EXTI0_IRHandler()
+{
+
+
+  __HAL_GPIO_EXTI_CLEAR_IT(KEY_UP_PIN);
+  HAL_Delay(20);
+  if(HAL_GPIO_ReadPin(KEY_UP,KEY_UP_PIN)==GPIO_PIN_RESET) return ;
+  iwdg_feed();
+  printf("喂狗了！！！\r\n");
+
 }
 
 int key_status()

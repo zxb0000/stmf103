@@ -10,7 +10,8 @@
                 "d:\\MDK_PRO\\stmf103\\Drivers",
                 "d:\\MDK_PRO\\stmf103\\User",
                 "d:\\MDK_PRO\\stmf103\\Drivers\\SYSTEM",
-                "D:\\Keil_v5\\ARM\\ARMCC\\include",
+                "d:\\MDK_PRO\\stmf103\\Drivers\\BSP",
+                "d:\\Keil_v5\\ARM\\ARMCC\\include",
                 "d:\\MDK_PRO\\stmf103\\Drivers\\CMSIS\\Device\\ST\\STM32F1xx\\Source\\Templates\\arm",
                 "d:\\MDK_PRO\\stmf103\\Drivers\\CMSIS\\Device\\ST\\STM32F1xx\\Source\\Templates",
                 "d:\\MDK_PRO\\stmf103\\Drivers\\SYSTEM\\delay",
@@ -108,6 +109,7 @@
                 "d:\\MDK_PRO\\stmf103\\Drivers",
                 "d:\\MDK_PRO\\stmf103\\User",
                 "d:\\MDK_PRO\\stmf103\\Drivers\\SYSTEM",
+                "d:\\MDK_PRO\\stmf103\\Drivers\\BSP",
                 "D:\\Keil_v5\\ARM\\ARMCC\\include",
                 "D:\\Keil_v5\\ARM\\ARMCC\\include\\rw",
                 "d:\\MDK_PRO\\stmf103\\Drivers\\CMSIS\\Device\\ST\\STM32F1xx\\Source\\Templates\\arm",
@@ -190,7 +192,30 @@
                 "__yield()=",
                 "__vfp_status(x,y)=0"
             ],
-            "intelliSenseMode": "${default}"
+            "intelliSenseMode": "windows-gcc-x64",
+            "macFrameworkPath": [],
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "mergeConfigurations": false,
+            "compilerPath": "D:\\minGW\\mingw64\\bin\\gcc.exe",
+            "browse": {
+                "path": [
+                    "d:/MDK_PRO/stmf103/Drivers/CMSIS/Device/ST/STM32F1xx/Include",
+                    "d:/MDK_PRO/stmf103/Drivers/STM32F1xx_HAL_Driver/Inc",
+                    "d:/MDK_PRO/stmf103/Drivers/CMSIS/Include",
+                    "d:/MDK_PRO/stmf103/Drivers",
+                    "d:/MDK_PRO/stmf103/User",
+                    "d:/MDK_PRO/stmf103/Drivers/SYSTEM",
+                    "d:/MDK_PRO/stmf103/Drivers/BSP",
+                    "D:/Keil_v5/ARM/ARMCC/include",
+                    "D:/Keil_v5/ARM/ARMCC/include/rw",
+                    "d:/MDK_PRO/stmf103/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/arm",
+                    "d:/MDK_PRO/stmf103/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates",
+                    "d:/MDK_PRO/stmf103/Drivers/STM32F1xx_HAL_Driver/Src",
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
         }
     ],
     "version": 4

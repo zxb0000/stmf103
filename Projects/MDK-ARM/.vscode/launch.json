@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/MDK_PRO/stmf103/User",
-      "program": "d:/MDK_PRO/stmf103/User/build/Debug/outDebug",
+      "cwd": "d:/MDK_PRO/stmf103/Projects/MDK-ARM/DebugConfig",
+      "program": "d:/MDK_PRO/stmf103/Projects/MDK-ARM/DebugConfig/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
