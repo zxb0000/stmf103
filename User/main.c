@@ -2,6 +2,7 @@
 #include "stm32f1xx_hal.h"
 #include "stdio.h"
 #include "iwdg.h"
+#include "wwdg.h"
 #define LED0 GPIOB
 #define LED1 GPIOE
 #define LED_PIN GPIO_PIN_5
@@ -39,7 +40,7 @@ void _sys_exit(int x)
 } 
 void SystemClock_Config(void);
 void led_init(void);
-void key_init(void);
+//void key_init(void);
 void exti_init(void);
 int key_status(void);
 void uart_init(void);
@@ -56,9 +57,9 @@ int main(void)
 	led_init();
 	exti_init();
   uart_init();
-  iwdg_init(8000,3);
+  //iwdg_init(2000,3);
+  wwdg_init(WWDG_PRESCALER_8,0x5F,0x7F,WWDG_EWI_ENABLE);
   printf("重启！\r\n");
-  iwdg_start();
   while (1)
   {
     if (flag>>15)
@@ -116,6 +117,7 @@ void exti_init(void)
   init_def.Pin=KEY_UP_PIN;
   init_def.Mode=GPIO_MODE_IT_RISING;
   init_def.Pull=GPIO_PULLDOWN;
+  init_def.Speed=GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(KEY_UP, &init_def);
 
   HAL_NVIC_EnableIRQ(EXTI3_IRQn);
@@ -124,7 +126,7 @@ void exti_init(void)
 
   HAL_NVIC_SetPriority(EXTI3_IRQn,2,1);
   HAL_NVIC_SetPriority(EXTI4_IRQn,2,2);
-  HAL_NVIC_SetPriority(EXTI0_IRQn,1,0);
+  HAL_NVIC_SetPriority(EXTI0_IRQn,2,0);
   
 }
 void EXTI3_IRQHandler()
@@ -149,15 +151,16 @@ void EXTI4_IRQHandler()
   __HAL_GPIO_EXTI_CLEAR_IT(KEY0_PIN);
   
 }
-void EXTI0_IRHandler()
+void EXTI0_IRQHandler()
 {
-
-
   __HAL_GPIO_EXTI_CLEAR_IT(KEY_UP_PIN);
   HAL_Delay(20);
   if(HAL_GPIO_ReadPin(KEY_UP,KEY_UP_PIN)==GPIO_PIN_RESET) return ;
+  LED0_TOGGLE;
+  LED1_TOGGLE;
   iwdg_feed();
   printf("喂狗了！！！\r\n");
+  __HAL_GPIO_EXTI_CLEAR_IT(KEY_UP_PIN);
 
 }
 
@@ -317,7 +320,12 @@ void SystemClock_Config(void)
 	//设置滴答定时器的中断优先级 只要比按键中断的优先级高就可以了
 	HAL_NVIC_SetPriority(SysTick_IRQn,0,0);
 }
-
+void WWDGCallBack(void)
+{
+  printf("WWDG_Callback\r\n");
+  LED0_TOGGLE;
+  LED1_TOGGLE;
+}
 //重定义fputc函数 
 int fputc(int ch, FILE *f)
 {      

@@ -24,6 +24,9 @@ void iwdg_init(uint32_t outTime,uint32_t prer){
     uint32_t rlr=calculate_reload(outTime,prer);
     printf("%d \r\n",rlr);
     ihiwdg.Init.Reload=rlr;
+    printf("prer=%d\r\n",prer);
+    printf("rlr=%d\r\n",rlr);
+    printf("outTime=%d\r\n",outTime);
     HAL_IWDG_Init(&ihiwdg);
 }
 
