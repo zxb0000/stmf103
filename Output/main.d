@@ -59,3 +59,4 @@
 ..\..\output\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\..\output\main.o: ..\..\Drivers\BSP\iwdg.h
 ..\..\output\main.o: ..\..\Drivers\BSP\wwdg.h
+..\..\output\main.o: ..\..\Drivers\BSP\gtime.h

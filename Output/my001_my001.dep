@@ -1,7 +1,7 @@
 Dependencies for Project 'my001', Target 'my001': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Source\Templates\arm\startup_stm32f103xe.s)(0x67286E5E)(--cpu Cortex-M3 -g --apcs=interwork -ID:\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include--pd "__UVISION_VERSION SETA 541" --pd "STM32F10X_HD SETA 1"--list ..\..\output\startup_stm32f103xe.lst --xref -o ..\..\output\startup_stm32f103xe.o --depend ..\..\output\startup_stm32f103xe.d)
-F (..\..\User\main.c)(0x6731C4E6)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I ..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include -I ..\..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\..\Drivers\CMSIS\Include -I ..\..\Drivers -I ..\..\User -I ..\..\Drivers\SYSTEM -I ..\..\Drivers\BSP-ID:\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\..\output\main.o --omf_browse ..\..\output\main.crf --depend ..\..\output\main.d)
+F (..\..\User\main.c)(0x67370CB4)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I ..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include -I ..\..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\..\Drivers\CMSIS\Include -I ..\..\Drivers -I ..\..\User -I ..\..\Drivers\SYSTEM -I ..\..\Drivers\BSP-ID:\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\..\output\main.o --omf_browse ..\..\output\main.crf --depend ..\..\output\main.d)
 I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x67286E5E)
 I (..\..\User\stm32f1xx_hal_conf.h)(0x67286E5E)
 I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x67286E5E)
@@ -61,6 +61,7 @@ I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h)(0x67286E5E)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (..\..\Drivers\BSP\iwdg.h)(0x672DC6ED)
 I (..\..\Drivers\BSP\wwdg.h)(0x6731BE57)
+I (..\..\Drivers\BSP\gtime.h)(0x6736FA17)
 F (..\..\User\stm32f1xx_it.c)(0x67286E5E)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I ..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include -I ..\..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\..\Drivers\CMSIS\Include -I ..\..\Drivers -I ..\..\User -I ..\..\Drivers\SYSTEM -I ..\..\Drivers\BSP-ID:\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\..\output\stm32f1xx_it.o --omf_browse ..\..\output\stm32f1xx_it.crf --depend ..\..\output\stm32f1xx_it.d)
 I (..\..\User\stm32f1xx_it.h)(0x67286E5E)
 I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x67286E5E)
@@ -976,7 +977,7 @@ I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_usb.h)(0x67286E5E)
 I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h)(0x67286E5E)
 I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h)(0x67286E5E)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
-F (..\..\Drivers\BSP\wwdg.c)(0x6731C5C0)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I ..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include -I ..\..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\..\Drivers\CMSIS\Include -I ..\..\Drivers -I ..\..\User -I ..\..\Drivers\SYSTEM -I ..\..\Drivers\BSP-ID:\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\..\output\wwdg.o --omf_browse ..\..\output\wwdg.crf --depend ..\..\output\wwdg.d)
+F (..\..\Drivers\BSP\wwdg.c)(0x6736F244)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I ..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include -I ..\..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\..\Drivers\CMSIS\Include -I ..\..\Drivers -I ..\..\User -I ..\..\Drivers\SYSTEM -I ..\..\Drivers\BSP-ID:\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\..\output\wwdg.o --omf_browse ..\..\output\wwdg.crf --depend ..\..\output\wwdg.d)
 I (..\..\Drivers\BSP\wwdg.h)(0x6731BE57)
 I (..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x67286E5E)
 I (..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xe.h)(0x67286E5E)
@@ -1035,3 +1036,119 @@ I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_usb.h)(0x67286E5E)
 I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h)(0x67286E5E)
 I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h)(0x67286E5E)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
+F (..\..\Drivers\BSP\btime.c)(0x673707FC)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I ..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include -I ..\..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\..\Drivers\CMSIS\Include -I ..\..\Drivers -I ..\..\User -I ..\..\Drivers\SYSTEM -I ..\..\Drivers\BSP-ID:\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\..\output\btime.o --omf_browse ..\..\output\btime.crf --depend ..\..\output\btime.d)
+I (..\..\Drivers\BSP\btime.h)(0x6736F700)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x67286E5E)
+I (..\..\User\stm32f1xx_hal_conf.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x67286E5E)
+I (..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x67286E5E)
+I (..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xe.h)(0x67286E5E)
+I (..\..\Drivers\CMSIS\Include\core_cm3.h)(0x67286E5E)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025237E)
+I (..\..\Drivers\CMSIS\Include\cmsis_version.h)(0x67286E5E)
+I (..\..\Drivers\CMSIS\Include\cmsis_compiler.h)(0x67286E5E)
+I (..\..\Drivers\CMSIS\Include\cmsis_armcc.h)(0x67286E5E)
+I (..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x67286E5E)
+I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025237E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_eth.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_can.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cec.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_crc.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_sram.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_fsmc.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_nor.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_i2c.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_i2s.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_iwdg.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rtc.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rtc_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pccard.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_sd.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_sdmmc.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_nand.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_spi.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_usart.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_irda.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_smartcard.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_wwdg.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_usb.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h)(0x67286E5E)
+F (..\..\Drivers\BSP\gtim.c)(0x67370D13)(--c99 -c --cpu Cortex-M3 -g -O1 --apcs=interwork --split_sections -I ..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include -I ..\..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\..\Drivers\CMSIS\Include -I ..\..\Drivers -I ..\..\User -I ..\..\Drivers\SYSTEM -I ..\..\Drivers\BSP-ID:\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="541" -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o ..\..\output\gtim.o --omf_browse ..\..\output\gtim.crf --depend ..\..\output\gtim.d)
+I (..\..\Drivers\BSP\gtime.h)(0x6736FA17)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h)(0x67286E5E)
+I (..\..\User\stm32f1xx_hal_conf.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h)(0x67286E5E)
+I (..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h)(0x67286E5E)
+I (..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xe.h)(0x67286E5E)
+I (..\..\Drivers\CMSIS\Include\core_cm3.h)(0x67286E5E)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025237E)
+I (..\..\Drivers\CMSIS\Include\cmsis_version.h)(0x67286E5E)
+I (..\..\Drivers\CMSIS\Include\cmsis_compiler.h)(0x67286E5E)
+I (..\..\Drivers\CMSIS\Include\cmsis_armcc.h)(0x67286E5E)
+I (..\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x67286E5E)
+I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025237E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_exti.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_eth.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_can.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cec.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_crc.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dac_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_sram.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_fsmc.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_nor.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_i2c.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_i2s.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_iwdg.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rtc.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rtc_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pccard.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_sd.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_sdmmc.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_nand.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_spi.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_usart.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_irda.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_smartcard.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_wwdg.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_ll_usb.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pcd_ex.h)(0x67286E5E)
+I (..\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_hcd.h)(0x67286E5E)

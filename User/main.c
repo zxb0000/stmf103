@@ -3,6 +3,7 @@
 #include "stdio.h"
 #include "iwdg.h"
 #include "wwdg.h"
+#include"gtime.h"
 #define LED0 GPIOB
 #define LED1 GPIOE
 #define LED_PIN GPIO_PIN_5
@@ -58,7 +59,9 @@ int main(void)
 	exti_init();
   uart_init();
   //iwdg_init(2000,3);
-  wwdg_init(WWDG_PRESCALER_8,0x5F,0x7F,WWDG_EWI_ENABLE);
+  //wwdg_init(WWDG_PRESCALER_8,0x5F,0x7F,WWDG_EWI_ENABLE);
+  //btime_init(7200u,1u,72000000u);
+  gtime_init(7200u,1u,72000000u);
   printf("重启！\r\n");
   while (1)
   {
@@ -73,6 +76,10 @@ int main(void)
     HAL_Delay(10);
     
   }
+}
+void GPeriodElapsedCallback(){
+  printf("定时器溢出了！\r\n");
+  printf("溢出了！\r\n");
 }
 void led_init(){
 	__HAL_RCC_GPIOE_CLK_ENABLE(); 

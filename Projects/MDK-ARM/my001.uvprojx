@@ -500,6 +500,16 @@
               <FileType>1</FileType>
               <FilePath>..\..\Drivers\BSP\wwdg.c</FilePath>
             </File>
+            <File>
+              <FileName>btime.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Drivers\BSP\btime.c</FilePath>
+            </File>
+            <File>
+              <FileName>gtim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Drivers\BSP\gtim.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
