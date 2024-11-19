@@ -510,6 +510,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\Drivers\BSP\gtim.c</FilePath>
             </File>
+            <File>
+              <FileName>tim_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Drivers\BSP\tim_pwm.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

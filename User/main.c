@@ -4,6 +4,7 @@
 #include "iwdg.h"
 #include "wwdg.h"
 #include"gtime.h"
+#include "tim_pwm.h"
 #define LED0 GPIOB
 #define LED1 GPIOE
 #define LED_PIN GPIO_PIN_5
@@ -49,7 +50,8 @@ UART_HandleTypeDef uart_handle;
 uint8_t uart_rx_buf[BUFFSIZE];
 uint8_t g_rx_buf[MAX_REC_LEN];
 uint16_t flag;
-
+uint16_t pwm;
+uint8_t dir=1;
 int main(void)
 {
 
@@ -58,10 +60,11 @@ int main(void)
 	led_init();
 	exti_init();
   uart_init();
+  tim_pwm_init(720U,500,72000000u);
   //iwdg_init(2000,3);
   //wwdg_init(WWDG_PRESCALER_8,0x5F,0x7F,WWDG_EWI_ENABLE);
   //btime_init(7200u,1u,72000000u);
-  gtime_init(7200u,1u,72000000u);
+  //gtime_init(7200u,1u,72000000u);
   printf("ÖØÆô£¡\r\n");
   while (1)
   {
@@ -74,6 +77,11 @@ int main(void)
       printf("\r\n");
     }
     HAL_Delay(10);
+    if(dir)pwm++;
+    else pwm--;
+    if(pwm>=300) dir=0;
+    if(pwm<=0) dir=1;
+    setCompare(pwm);
     
   }
 }
